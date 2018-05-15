@@ -20,6 +20,8 @@ from app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('', views.post_list)
+    url('^post_list$', views.post_list),
+    url('^add$',views.add_post),
+    url('^get_add_data$', views.get_add_data),
 
 ]

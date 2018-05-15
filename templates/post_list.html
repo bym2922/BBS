@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>show_article</title>
+    <title>show_posts</title>
     <style>
         a{
             color: white;
+            margin-left: 10px;
             text-decoration-line: none;
         }
         p{
@@ -19,22 +20,22 @@
     </style>
 </head>
 <body  bgcolor="#524C43">
-<h2 style="margin-top: 10px; color: white">文章列表：</h2>
-<h1>和军方发动攻击附带看过几个咖啡馆</h1>
-<table border="1" cellpadding="5"cellspacing="0" align="center" width="870px" style="color: white;text-align: center">
+<h2 style="margin-top: 10px; color: white">帖子列表：</h2>
+{#<h1>和军方发动攻击附带看过几个咖啡馆</h1>#}
+<table border="1" cellpadding="15"cellspacing="0" align="center" width="850px" style="color: white;text-align: center">
     <tr>
         <td><strong>id</strong></td>
         <td><strong>title</strong></td>
-        <td><strong>author_id</strong></td>
+        <td><strong>author</strong></td>
         <!--<td><strong>summary</strong></td>-->
-        <td style="width: 40px"><strong>操作</strong></td>
+        <td style="width: 60px"><strong>操作</strong></td>
     </tr>
-        {% for post in post_lists %}
+        {% for post in all_Posts %}
             <tr>
                 <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
-                <td>{{ post.author_id }}</td>
-                <!--<td>{{ art.summary }}</td>-->
+                <td>{{ post.author.name }}</td>
+{#                <!--<td>{{ art.summary }}</td>-->#}
                 <td><a href="delete_post?id={{ post.id }}&page={{ page }}">删除</a>
             </tr>
         {% endfor %}
