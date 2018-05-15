@@ -25,3 +25,5 @@ def post_list(request):
     lastpage = all_page
     return render(request, 'post_list.html',{"all_Arts": all,"page":currentpage,"prepage":prepage,"nextpage": nextpage, "lastpage": lastpage})
 
+def read_post(request):
+    pass
