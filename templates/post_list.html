@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show_article</title>
+    <style>
+        a{
+            color: white;
+            text-decoration-line: none;
+        }
+        p{
+            margin-left: 250px;
+            display: inline-block;
+        }
+        form{
+            margin-left: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body  bgcolor="#524C43">
+<h2 style="margin-top: 10px; color: white">文章列表：</h2>
+<h1>和军方发动攻击附带看过几个咖啡馆</h1>
+<table border="1" cellpadding="5"cellspacing="0" align="center" width="870px" style="color: white;text-align: center">
+    <tr>
+        <td><strong>id</strong></td>
+        <td><strong>title</strong></td>
+        <td><strong>author_id</strong></td>
+        <!--<td><strong>summary</strong></td>-->
+        <td style="width: 40px"><strong>操作</strong></td>
+    </tr>
+        {% for post in post_lists %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.author_id }}</td>
+                <!--<td>{{ art.summary }}</td>-->
+                <td><a href="delete_post?id={{ post.id }}&page={{ page }}">删除</a>
+            </tr>
+        {% endfor %}
+</table>
+<p>
+    <a href="post_list?page=1">首页</a>
+    <a href="post_list?page={{ prepage }}">上一页</a>
+    <a href="post_list?page={{ nextpage }}">下一页</a>
+    <a href="post_list?page={{ lastpage }}">尾页</a>
+    <form action="post_list" >
+        <input type="text" value="{{ page }}" name="page" style="width: 30px">
+        <input type="submit" value="跳转">
+    </form>
+    <a href="../show_mainpage">返回主界面</a>
+</p>
+</body>
+</html>

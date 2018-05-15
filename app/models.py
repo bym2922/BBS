@@ -11,4 +11,5 @@ class Posts(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=30)
+    pswd = models.CharField(max_length=50)
     art_nums = models.IntegerField()
