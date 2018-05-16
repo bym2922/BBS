@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app import views
+from post import views as post_views
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url('^post_list$', views.post_list),
-    url('^add$',views.add_post),
-    url('^get_add_data$', views.get_add_data),
+    url('^post_list$', post_views.post_list),
+    url('^create',post_views.create),
+    url('^edit', post_views.edit),
+    url('^read',post_views.read),
+    url('^search',post_views.search)
 
 ]
