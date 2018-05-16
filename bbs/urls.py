@@ -19,10 +19,12 @@ from post import views as post_views
 
 
 urlpatterns = [
-    url('^post_list$', post_views.post_list),
+    url('^$', post_views.post_list),
     url('^create',post_views.create),
     url('^edit', post_views.edit),
     url('^read',post_views.read),
-    url('^search',post_views.search)
+    url('^search',post_views.search),
+
+
 
 ]
