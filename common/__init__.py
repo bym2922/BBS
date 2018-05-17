@@ -1,0 +1,1 @@
+from .keys import VIEW_KEY,POST_KEY
