@@ -27,6 +27,7 @@ urlpatterns = [
     url('^edit', post_views.edit),
     url('^read',post_views.read),
     url('^search',post_views.search),
+    url('^comment',post_views.comment),
 
     url('^register',user_views.register),
     url('^login',user_views.login),

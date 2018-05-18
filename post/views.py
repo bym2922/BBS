@@ -1,12 +1,10 @@
 # coding: utf-8
 
 from django.shortcuts import render, redirect
-from django.core.cache import cache
 
 from math import ceil
 
-from .models import Post
-# from  common.keys import POST_KEYS
+from .models import Post,Comment
 from  .helper import page_cache
 
 # Create your views here.
@@ -42,28 +40,19 @@ def edit(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
         post = Post.objects.get(id=post_id)
-
         post.title = request.POST.get('title')
         post.content = request.POST.get('content')
         post.save()
-        # cache.set(POST_KEYS % post_id, post)
         return redirect('/read_post/?post_id=%s' % post.id)
     else:
         post_id = request.GET.get('post_id')
         post = Post.objects.get(id=post_id)
         return render(request, 'edit_post.html', {'post': post})
 
-@page_cache(10)
+@page_cache(5)
 def read(request):
     post_id = request.GET.get('post_id')
-    # post = cache.get(POST_KEYS % post_id)
-    # print(post)
-    # if post is None:
-    #     print('缓存没找到')
     post = Post.objects.get(id=post_id)
-        # print('从数据库中找')
-        # cache.set(POST_KEYS % post_id, post)
-        # print('加入缓存')
     return render(request, 'read_post.html', {'post': post})
 
 
@@ -73,6 +62,14 @@ def search(request):
     return render(request, 'search.html', {'posts': posts})
 
 
+def comment(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        content = request.POST.get('content')
+        Comment.objects.create(uid=request.session['uid'], post_id=post_id, content=content)
+    return redirect('/read_post/?post_id=%s' % post_id)
+
 def top10(request):
 
     return render(request,'top10.html',{})
+
