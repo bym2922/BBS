@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from math import ceil
 
 from .models import Post,Comment
-from  .helper import page_cache
+from  post.helper import page_cache
+from  user.helper import login_required
 
 # Create your views here.
 
@@ -25,7 +26,7 @@ def post_list(request):
 
     return render(request, 'post_list.html', {'posts': posts, 'pages': range(pages)})
 
-
+@login_required
 def create(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -61,7 +62,7 @@ def search(request):
     posts = Post.objects.filter(content__contains=keyword)
     return render(request, 'search.html', {'posts': posts})
 
-
+@login_required
 def comment(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')

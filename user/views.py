@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import make_password,check_password
 
 from .forms import UserForm
 from .models import User
+from .helper import login_required
 # Create your views here.
 
 
@@ -40,7 +41,7 @@ def logout(request):
     request.session.flush()
     return redirect('/')
 
-
+@login_required
 def user_info(request):
     uid = request.session.get('uid')
     try:
