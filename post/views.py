@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from math import ceil
 
 from .models import Post,Comment
-from  post.helper import page_cache
+from  post.helper import page_cache,get_top_n,read_count
 from  user.helper import login_required
 
 # Create your views here.
@@ -49,7 +49,7 @@ def edit(request):
         post_id = request.GET.get('post_id')
         post = Post.objects.get(id=post_id)
         return render(request, 'edit_post.html', {'post': post})
-
+@read_count
 @page_cache(5)
 def read(request):
     post_id = request.GET.get('post_id')
@@ -71,6 +71,6 @@ def comment(request):
     return redirect('/read_post/?post_id=%s' % post_id)
 
 def top10(request):
-
-    return render(request,'top10.html',{})
+    data = get_top_n(10)
+    return render(request,'top10.html',{'rank_data':data})
 

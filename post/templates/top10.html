@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
 
+<!--
+1 Python-Zen37  100
+2 Python-Zen12   91
+3 Python-Zen31   85
+4 Python-Zen4    70
+5 Python-Zen9    61
+ -->
+<body style="background-color: transparent;">
+    <ol>
+        {% for d in rank_data %}
+        <li>
+            <a href="/read_post/?post_id={{d.0.id}}" onload="window.top.location.href=this.href">{{d.0.title}}</a>
+            <span style="float: right;">{{d.1}}</span>
+        </li>
+        {% endfor %}
+    </ol>
 </body>
 </html>
